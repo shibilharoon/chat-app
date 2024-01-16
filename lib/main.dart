@@ -1,11 +1,19 @@
-import 'package:chat_app/firebase_options.dart';
-import 'package:chat_app/view/pages/initial_page.dart';
+import 'package:chathub/controller/basic_provider.dart';
+import 'package:chathub/controller/firebase_provider.dart';
+import 'package:chathub/view/pages/auth_gate.dart';
+import 'package:chathub/view/pages/initial_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: 'AIzaSyCBTW-ZMqw6edRcTdzHIeavNEcFH754u0w',
+          appId: '1:23560088534:android:80965053e1072ab4bd5277',
+          messagingSenderId: '23560088534',
+          projectId: 'chitchat-39461'));
   runApp(MyApp());
 }
 
@@ -14,9 +22,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: InitialPage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => BasicProvider()),
+        ChangeNotifierProvider(create: (context) => FirebaseProvider()),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: AuthGate(),
+      ),
     );
   }
 }

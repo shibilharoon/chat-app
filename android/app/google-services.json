@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "23560088534-meii3mu943odd08ej3pc5jh0l0pg05lu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chat_app",
+            "certificate_hash": "14b7ece0af5d2a59753ab48bf469e776bfcc6df9"
+          }
+        },
+        {
           "client_id": "23560088534-7p29og81str06t5s6tcf5st14j54s21o.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,49 @@
             {
               "client_id": "23560088534-7p29og81str06t5s6tcf5st14j54s21o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "23560088534-8vnlu09broi3o5i17l4sah1cm845joc0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chathub.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23560088534:android:f709340b5c45df78bd5277",
+        "android_client_info": {
+          "package_name": "com.example.chathub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23560088534-7p29og81str06t5s6tcf5st14j54s21o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBTW-ZMqw6edRcTdzHIeavNEcFH754u0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23560088534-7p29og81str06t5s6tcf5st14j54s21o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "23560088534-8vnlu09broi3o5i17l4sah1cm845joc0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chathub.RunnerTests"
+              }
             }
           ]
         }

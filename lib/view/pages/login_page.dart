@@ -1,6 +1,8 @@
-import 'package:chat_app/services/auth_services.dart';
-import 'package:chat_app/view/pages/initial_page.dart';
-import 'package:chat_app/view/pages/signup.dart';
+import 'package:chathub/services/auth_services.dart';
+import 'package:chathub/view/pages/homescreen.dart';
+import 'package:chathub/view/pages/initial_page.dart';
+import 'package:chathub/view/pages/phone_login_screen.dart';
+import 'package:chathub/view/pages/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -170,25 +172,36 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           width: 10,
                         ),
-                        Container(
-                          width: 60,
-                          height: 60,
-                          child: Icon(FontAwesomeIcons.phone),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PhoneLoginScreen()));
+                          },
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            child: Icon(FontAwesomeIcons.phone),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: 10,
                         ),
-                        Container(
-                          width: 60,
-                          height: 60,
-                          child: Icon(FontAwesomeIcons.twitter),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
+                        GestureDetector(
+                          onTap: () {
+                            _auth.signInWithGithub(context);
+                          },
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            child: Icon(FontAwesomeIcons.github),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                           ),
                         ),
                       ],
@@ -233,7 +246,7 @@ class _LoginPageState extends State<LoginPage> {
     User? user = await _auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => SignUpPage()));
+          .push(MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {
       print('there is some error ');
     }

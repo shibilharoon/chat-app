@@ -17,24 +17,15 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -52,11 +43,42 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyB0-zF2ktCAPUdOrZAT-mlQL_IXDdPmhaA',
+    appId: '1:23560088534:web:11c675f803d082e6bd5277',
+    messagingSenderId: '23560088534',
+    projectId: 'chitchat-39461',
+    authDomain: 'chitchat-39461.firebaseapp.com',
+    storageBucket: 'chitchat-39461.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCBTW-ZMqw6edRcTdzHIeavNEcFH754u0w',
     appId: '1:23560088534:android:80965053e1072ab4bd5277',
     messagingSenderId: '23560088534',
     projectId: 'chitchat-39461',
     storageBucket: 'chitchat-39461.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCxPkcopXN4IZdO7OTp91lo4MPWwEDZ7rw',
+    appId: '1:23560088534:ios:b4f9199480e80503bd5277',
+    messagingSenderId: '23560088534',
+    projectId: 'chitchat-39461',
+    storageBucket: 'chitchat-39461.appspot.com',
+    androidClientId: '23560088534-meii3mu943odd08ej3pc5jh0l0pg05lu.apps.googleusercontent.com',
+    iosClientId: '23560088534-vkm1u6au1tls4kvc07jjiglq9ge9q15d.apps.googleusercontent.com',
+    iosBundleId: 'com.example.chatApp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCxPkcopXN4IZdO7OTp91lo4MPWwEDZ7rw',
+    appId: '1:23560088534:ios:d5e5ed3f8434c527bd5277',
+    messagingSenderId: '23560088534',
+    projectId: 'chitchat-39461',
+    storageBucket: 'chitchat-39461.appspot.com',
+    androidClientId: '23560088534-meii3mu943odd08ej3pc5jh0l0pg05lu.apps.googleusercontent.com',
+    iosClientId: '23560088534-sptp46idev03ibqe0em4l91a4jg8halh.apps.googleusercontent.com',
+    iosBundleId: 'com.example.chatApp.RunnerTests',
   );
 }
