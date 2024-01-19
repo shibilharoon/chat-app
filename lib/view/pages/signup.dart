@@ -1,4 +1,3 @@
-
 import 'package:chathub/services/auth_services.dart';
 import 'package:chathub/view/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -185,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
     String name = usernameController.text;
     String email = emailController.text;
     String password = passwordController.text;
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+    User? user = await _auth.signUpWithEmailAndPassword(email, password, name);
     if (user != null) {
       // Show success pop-up
       _showSuccessDialog();
@@ -204,8 +203,13 @@ class _SignUpPageState extends State<SignUpPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Sign Up Successful"),
-          content: Text("You have signed up successfully!"),
+          backgroundColor: Colors.black,
+          title: Text(
+            "Sign Up Successful",
+            style: TextStyle(color: Colors.white),
+          ),
+          content: Text("You have signed up successfully!",
+              style: TextStyle(color: Colors.white)),
           actions: <Widget>[
             TextButton(
               onPressed: () {

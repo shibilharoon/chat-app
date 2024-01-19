@@ -1,3 +1,4 @@
+import 'package:chathub/controller/auth_provider.dart';
 import 'package:chathub/services/auth_services.dart';
 import 'package:chathub/view/pages/homescreen.dart';
 import 'package:chathub/view/pages/initial_page.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,7 +18,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final FirebaseAuthServices _auth = FirebaseAuthServices();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   @override
@@ -153,58 +154,62 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 78),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _auth.signinWithGoogle();
-                          },
-                          child: Container(
-                            width: 60,
-                            height: 60,
-                            child: Icon(FontAwesomeIcons.google),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
+                    child: Consumer<AuthProviders>(
+                      builder: (context, value, child) {
+                        return Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                value.singupWithGoogle();
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                child: Icon(FontAwesomeIcons.google),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => PhoneLoginScreen()));
-                          },
-                          child: Container(
-                            width: 60,
-                            height: 60,
-                            child: Icon(FontAwesomeIcons.phone),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
+                            SizedBox(
+                              width: 10,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            _auth.signInWithGithub(context);
-                          },
-                          child: Container(
-                            width: 60,
-                            height: 60,
-                            child: Icon(FontAwesomeIcons.github),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => PhoneLoginScreen()));
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                child: Icon(FontAwesomeIcons.phone),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ],
+                            SizedBox(
+                              width: 10,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                value.signInWithGithub(context);
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                child: Icon(FontAwesomeIcons.github),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
@@ -241,9 +246,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void signIn() async {
+    final signInServices = Provider.of<AuthProviders>(context, listen: false);
     String email = emailController.text;
     String password = passwordController.text;
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    User? user = await signInServices.signInWithEmail(email, password, context);
     if (user != null) {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => HomeScreen()));

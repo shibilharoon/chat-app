@@ -1,4 +1,5 @@
 import 'package:chathub/model/chat_model.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -31,15 +32,15 @@ class ChatService {
         .add(newmessage.toJson());
   }
 
-  addImageMessage(String recieverid, image) async {
-    Reference childfolder = firebaseStorage.child('images');
-    Reference? imageupload = childfolder.child("$recieverid.jpg");
-    try {
-      await imageupload.putFile(image);
-      downloadurl = await imageupload.getDownloadURL();
-      sendMessage(recieverid, downloadurl, "image");
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
+  // addImageMessage(String recieverid, image) async {
+  //   Reference childfolder = firebaseStorage.child('images');
+  //   Reference? imageupload = childfolder.child("$recieverid.jpg");
+  //   try {
+  //     await imageupload.putFile(image);
+  //     downloadurl = await imageupload.getDownloadURL();
+  //     sendMessage(recieverid, downloadurl, "image");
+  //   } catch (e) {
+  //     throw Exception(e);
+  //   }
+  // }
 }

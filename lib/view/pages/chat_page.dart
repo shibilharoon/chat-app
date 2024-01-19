@@ -1,5 +1,3 @@
-
-
 import 'package:chathub/controller/basic_provider.dart';
 import 'package:chathub/controller/firebase_provider.dart';
 import 'package:chathub/model/user_model.dart';
@@ -7,19 +5,20 @@ import 'package:chathub/services/auth_services.dart';
 import 'package:chathub/services/chat_service.dart';
 import 'package:chathub/view/widget/chat_bubble.dart';
 import 'package:chathub/view/widget/image_selector_dialogue.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ChatPage extends StatefulWidget {
-  const ChatPage({super.key, required this.user});
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key, required this.user});
   final UserModel user;
 
   @override
-  State<ChatPage> createState() => _ChatPageState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _ChatScreenState extends State<ChatScreen> {
   TextEditingController messagecontroller = TextEditingController();
   FirebaseAuthServices service = FirebaseAuthServices();
 
@@ -37,7 +36,7 @@ class _ChatPageState extends State<ChatPage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: const Color.fromRGBO(41, 15, 102, 1),
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
       body: SafeArea(
         child: Column(
           children: [
@@ -52,9 +51,11 @@ class _ChatPageState extends State<ChatPage> {
                       },
                       icon: const Icon(Icons.arrow_back_ios)),
                   Text(
-                    widget.user.name!,
-                    style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                    widget.user.name ?? widget.user.email!,
+                    style: GoogleFonts.comfortaa(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   IconButton(
                       onPressed: () {
@@ -90,34 +91,31 @@ class _ChatPageState extends State<ChatPage> {
                       width: size.width * 0.9,
                       height: size.height * 0.08,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: const Color.fromARGB(255, 0, 0, 0),
                           borderRadius: BorderRadius.circular(20)),
                       child: Row(
                         children: [
-                          IconButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    final pro =
-                                        Provider.of<BasicProvider>(context);
-                                    return ImageSelectorDialog(
-                                      pro: pro,
-                                      size: size,
-                                      recieverId: widget.user.uid!,
-                                    );
-                                  },
-                                );
-                              },
-                              icon: Image.asset(
-                                'assets/images/gallery.png',
-                                height: 30,
-                              )),
+                          // IconButton(
+                          //     onPressed: () {
+                          //       showDialog(
+                          //         context: context,
+                          //         builder: (context) {
+                          //           final pro =
+                          //               Provider.of<BasicProvider>(context);
+                          //           return ImageSelectorDialog(
+                          //             pro: pro,
+                          //             size: size,
+                          //             recieverId: widget.user.uid!,
+                          //           );
+                          //         },
+                          //       );
+                          //     },
+                          //     icon: Icon(Icons.photo)),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.ubuntu(
                                     color: Colors.black, fontSize: 18),
                                 controller: messagecontroller,
                                 decoration: InputDecoration(
@@ -127,17 +125,18 @@ class _ChatPageState extends State<ChatPage> {
                                             BorderRadius.circular(20)),
                                     filled: true,
                                     fillColor:
-                                        const Color.fromRGBO(239, 237, 247, 1)),
+                                        Color.fromARGB(255, 174, 174, 174)),
                               ),
                             ),
                           ),
                           IconButton(
                               onPressed: () {
                                 sendMessage();
+                                messagecontroller.clear();
                               },
                               icon: const Icon(
                                 Icons.send_rounded,
-                                color: Colors.amber,
+                                color: Colors.white,
                                 size: 30,
                               ))
                         ],
@@ -157,7 +156,6 @@ class _ChatPageState extends State<ChatPage> {
     if (messagecontroller.text.isNotEmpty) {
       await ChatService()
           .sendMessage(widget.user.uid!, messagecontroller.text, "text");
-      messagecontroller.clear();
     }
   }
 }

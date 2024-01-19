@@ -1,3 +1,4 @@
+import 'package:chathub/controller/auth_provider.dart';
 import 'package:chathub/controller/basic_provider.dart';
 import 'package:chathub/controller/firebase_provider.dart';
 import 'package:chathub/view/pages/auth_gate.dart';
@@ -13,7 +14,8 @@ void main(List<String> args) async {
           apiKey: 'AIzaSyCBTW-ZMqw6edRcTdzHIeavNEcFH754u0w',
           appId: '1:23560088534:android:80965053e1072ab4bd5277',
           messagingSenderId: '23560088534',
-          projectId: 'chitchat-39461'));
+          projectId: 'chitchat-39461',
+          storageBucket: "chitchat-39461.appspot.com"));
   runApp(MyApp());
 }
 
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => BasicProvider()),
         ChangeNotifierProvider(create: (context) => FirebaseProvider()),
+        ChangeNotifierProvider(create: (context) => AuthProviders())
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

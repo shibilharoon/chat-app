@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          ChatPage(user: userdetails),
+                                          ChatScreen(user: userdetails),
                                     )),
                                 child: ListTile(
                                   leading: CircleAvatar(
@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         AssetImage("assets/images/user.jpg"),
                                   ),
                                   title: Text(
-                                    userdetails.name!,
+                                    userdetails.name ?? userdetails.email!,
                                     style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600),

@@ -9,44 +9,79 @@ class FirebaseAuthServices {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   Future<User?> signUpWithEmailAndPassword(
-      String email, String password) async {
+    String name,
+    String email,
+    String password,
+  ) async {
     try {
-      UserCredential credential = await auth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      return credential.user;
+      final UserModel userdata =
+          UserModel(email: email, name: name, uid: userCredential.user!.uid);
+      firestore
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .set(userdata.toJson());
+      return userCredential.user;
     } catch (e) {
-      print("error occured");
+      print('some error');
     }
     return null;
   }
+
+  // Future<User?> signInWithEmailAndPassword(
+  //     String email, String password, context) async {
+  //   try {
+  //     UserCredential credential = await auth.signInWithEmailAndPassword(
+  //         email: email, password: password);
+  //     firestore.collection("users").doc(credential.user!.uid).set(
+  //         {"uid": credential.user!.uid, "email": email},
+  //         SetOptions(merge: true));
+  //     return credential.user;
+  //   } catch (e) {
+  //     print("error occured");
+  //   }
+  //   return null;
+  // }
 
   Future<User?> signInWithEmailAndPassword(
-      String email, String password) async {
+      String email, String password, context) async {
     try {
-      UserCredential credential = await auth.signInWithEmailAndPassword(
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
-      return credential.user;
-    } catch (e) {
-      print("error occured");
+      firestore.collection('users').doc(userCredential.user!.uid).set(
+          {'uid': userCredential.user!.uid, 'email': email},
+          SetOptions(merge: true));
+      return userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      String errorcode = "error singIn";
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
+        errorcode = "Icorrect email or password";
+      } else if (e.code == 'user-disabled') {
+        errorcode = "User not found";
+      } else {
+        errorcode = e.code;
+      }
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(errorcode)));
+      return null;
     }
-    return null;
   }
 
-  signinWithGoogle() async {
+  singinWithGoogle() async {
     try {
       final GoogleSignInAccount? guser = await GoogleSignIn().signIn();
       final GoogleSignInAuthentication gauth = await guser!.authentication;
       final credential = GoogleAuthProvider.credential(
           accessToken: gauth.accessToken, idToken: gauth.idToken);
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-      User? googleuser = userCredential.user;
+      UserCredential user = await auth.signInWithCredential(credential);
+      User? googleuser = user.user;
       final UserModel userdata = UserModel(
-          name: googleuser!.displayName,
-          email: googleuser.email,
+          email: googleuser!.email,
+          name: googleuser.displayName,
           uid: googleuser.uid);
-      firestore.collection('users').doc(googleuser.uid).set(userdata.toJson());
-      return userCredential;
+      firestore.collection("users").doc(googleuser.uid).set(userdata.toJson());
+      return user;
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code);
     }
@@ -130,7 +165,7 @@ class FirebaseAuthServices {
       await auth.signOut();
       await google.signOut();
     } catch (e) {
-      throw Exception(e);
+      print("this is the error r$e");
     }
   }
 }
