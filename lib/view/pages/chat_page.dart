@@ -1,10 +1,8 @@
-import 'package:chathub/controller/basic_provider.dart';
 import 'package:chathub/controller/firebase_provider.dart';
 import 'package:chathub/model/user_model.dart';
 import 'package:chathub/services/auth_services.dart';
 import 'package:chathub/services/chat_service.dart';
 import 'package:chathub/view/widget/chat_bubble.dart';
-import 'package:chathub/view/widget/image_selector_dialogue.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,7 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Color.fromARGB(255, 0, 0, 0),
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: SafeArea(
         child: Column(
           children: [
@@ -125,7 +123,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                             BorderRadius.circular(20)),
                                     filled: true,
                                     fillColor:
-                                        Color.fromARGB(255, 174, 174, 174)),
+                                        const Color.fromARGB(255, 174, 174, 174)),
                               ),
                             ),
                           ),

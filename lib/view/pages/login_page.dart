@@ -1,5 +1,4 @@
 import 'package:chathub/controller/auth_provider.dart';
-import 'package:chathub/services/auth_services.dart';
 import 'package:chathub/view/pages/homescreen.dart';
 import 'package:chathub/view/pages/initial_page.dart';
 import 'package:chathub/view/pages/phone_login_screen.dart';
@@ -33,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          Container(
+          SizedBox(
             height: double.infinity,
             width: double.infinity,
             child: Image.asset(
@@ -60,9 +59,9 @@ class _LoginPageState extends State<LoginPage> {
             child: IconButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => InitialPage()));
+                      MaterialPageRoute(builder: (context) => const InitialPage()));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios_new,
                   color: Colors.white,
                 )),
@@ -85,21 +84,21 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                         hintText: "E-mail",
                         hintStyle:
-                            TextStyle(color: Color.fromARGB(184, 0, 0, 0)),
-                        prefixIcon: Icon(Icons.email),
-                        prefixIconColor: Color.fromARGB(175, 209, 206, 206),
+                            const TextStyle(color: Color.fromARGB(184, 0, 0, 0)),
+                        prefixIcon: const Icon(Icons.email),
+                        prefixIconColor: const Color.fromARGB(175, 209, 206, 206),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: const Color.fromARGB(255, 255, 255, 255)),
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 255, 255, 255)),
                           borderRadius: BorderRadius.circular(30),
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -107,21 +106,21 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                         hintText: "Password",
                         hintStyle:
-                            TextStyle(color: Color.fromARGB(171, 0, 0, 0)),
-                        prefixIcon: Icon(Icons.star),
-                        prefixIconColor: Color.fromARGB(172, 188, 185, 185),
+                            const TextStyle(color: Color.fromARGB(171, 0, 0, 0)),
+                        prefixIcon: const Icon(Icons.star),
+                        prefixIconColor: const Color.fromARGB(172, 188, 185, 185),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: const Color.fromARGB(255, 255, 255, 255)),
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 255, 255, 255)),
                           borderRadius: BorderRadius.circular(30),
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   GestureDetector(
@@ -130,26 +129,26 @@ class _LoginPageState extends State<LoginPage> {
                       height: 50,
                       width: 150,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 167, 15, 15),
+                          color: const Color.fromARGB(255, 167, 15, 15),
                           borderRadius: BorderRadius.circular(30)),
-                      child: Center(
+                      child: const Center(
                           child: Text(
                         "Login",
                         style: TextStyle(color: Colors.white),
                       )),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Divider(),
+                  const Divider(),
                   // Text(
                   //   "OR",
                   //   style: TextStyle(
                   //       fontSize: 15, color: Color.fromARGB(218, 255, 255, 255)),
                   // ),
                   // Divider(),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
@@ -165,14 +164,14 @@ class _LoginPageState extends State<LoginPage> {
                               child: Container(
                                 width: 60,
                                 height: 60,
-                                child: Icon(FontAwesomeIcons.google),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(15),
                                 ),
+                                child: const Icon(FontAwesomeIcons.google),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             GestureDetector(
@@ -183,14 +182,14 @@ class _LoginPageState extends State<LoginPage> {
                               child: Container(
                                 width: 60,
                                 height: 60,
-                                child: Icon(FontAwesomeIcons.phone),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(15),
                                 ),
+                                child: const Icon(FontAwesomeIcons.phone),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             GestureDetector(
@@ -200,11 +199,11 @@ class _LoginPageState extends State<LoginPage> {
                               child: Container(
                                 width: 60,
                                 height: 60,
-                                child: Icon(FontAwesomeIcons.github),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(15),
                                 ),
+                                child: const Icon(FontAwesomeIcons.github),
                               ),
                             ),
                           ],
@@ -212,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Padding(
@@ -226,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => SignUpPage()));
+                                builder: (context) => const SignUpPage()));
                           },
                           child: Text(
                             " Sign up",
@@ -252,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
     User? user = await signInServices.signInWithEmail(email, password, context);
     if (user != null) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+          .push(MaterialPageRoute(builder: (context) => const HomeScreen()));
     } else {
       print('there is some error ');
     }

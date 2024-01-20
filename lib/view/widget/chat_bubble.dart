@@ -1,9 +1,9 @@
-
 import 'package:chathub/controller/firebase_provider.dart';
 import 'package:chathub/services/auth_services.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +32,7 @@ class ChatBubble extends StatelessWidget {
           itemBuilder: (context, index) {
             final chats = value.messages[index];
             DateTime dateTime = chats.time!.toDate();
-            // String formattedTime = DateFormat.jm().format(dateTime);
+            String formattedTime = DateFormat.jm().format(dateTime);
 
             var alignment = chats.senderId == service.auth.currentUser!.uid
                 ? Alignment.centerRight
@@ -83,11 +83,11 @@ class ChatBubble extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  // Text(
-                                  //   formattedTime,
-                                  //   style: TextStyle(
-                                  //       color: Colors.black.withOpacity(0.7)),
-                                  // )
+                                  Text(
+                                    formattedTime,
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.7)),
+                                  )
                                 ],
                               ),
                             )
@@ -126,11 +126,11 @@ class ChatBubble extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  // Text(
-                                  //   formattedTime,
-                                  //   style: TextStyle(
-                                  //       color: Colors.black.withOpacity(0.7)),
-                                  // )
+                                  Text(
+                                    formattedTime,
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.7)),
+                                  )
                                 ],
                               ),
                             )

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  const SignUpPage({super.key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -31,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          Container(
+          SizedBox(
             height: double.infinity,
             width: double.infinity,
             child: Image.asset(
@@ -60,10 +60,10 @@ class _SignUpPageState extends State<SignUpPage> {
             child: IconButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: Colors.white,
               ),
@@ -86,69 +86,72 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: usernameController,
                     decoration: InputDecoration(
                       hintText: "Name",
-                      hintStyle: TextStyle(color: Color.fromARGB(184, 0, 0, 0)),
-                      prefixIcon: Icon(Icons.person),
-                      prefixIconColor: Color.fromARGB(175, 209, 206, 206),
+                      hintStyle:
+                          const TextStyle(color: Color.fromARGB(184, 0, 0, 0)),
+                      prefixIcon: const Icon(Icons.person),
+                      prefixIconColor: const Color.fromARGB(175, 209, 206, 206),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 255, 255, 255),
+                        borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255),
                         ),
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
                       hintText: "E-mail",
-                      hintStyle: TextStyle(color: Color.fromARGB(171, 0, 0, 0)),
-                      prefixIcon: Icon(Icons.email),
-                      prefixIconColor: Color.fromARGB(172, 188, 185, 185),
+                      hintStyle:
+                          const TextStyle(color: Color.fromARGB(171, 0, 0, 0)),
+                      prefixIcon: const Icon(Icons.email),
+                      prefixIconColor: const Color.fromARGB(172, 188, 185, 185),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 255, 255, 255),
+                        borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255),
                         ),
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: passwordController,
                     decoration: InputDecoration(
                       hintText: "Password",
-                      hintStyle: TextStyle(color: Color.fromARGB(171, 0, 0, 0)),
-                      prefixIcon: Icon(Icons.star),
-                      prefixIconColor: Color.fromARGB(172, 188, 185, 185),
+                      hintStyle:
+                          const TextStyle(color: Color.fromARGB(171, 0, 0, 0)),
+                      prefixIcon: const Icon(Icons.star),
+                      prefixIconColor: const Color.fromARGB(172, 188, 185, 185),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 255, 255, 255),
+                        borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255),
                         ),
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   GestureDetector(
@@ -157,10 +160,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 50,
                       width: 150,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 167, 15, 15),
+                        color: const Color.fromARGB(255, 167, 15, 15),
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           "Sign up",
                           style: TextStyle(color: Colors.white),
@@ -168,7 +171,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],
@@ -184,14 +187,12 @@ class _SignUpPageState extends State<SignUpPage> {
     String name = usernameController.text;
     String email = emailController.text;
     String password = passwordController.text;
-    User? user = await _auth.signUpWithEmailAndPassword(email, password, name);
+    UserCredential? user = await _auth.signUpWithEmailAndPassword(email, password, name);
     if (user != null) {
-      // Show success pop-up
       _showSuccessDialog();
-      // Navigate to the login page after a delay
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 2), () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => LoginPage()));
+            .push(MaterialPageRoute(builder: (context) => const LoginPage()));
       });
     } else {
       print('there is some error ');
@@ -204,18 +205,18 @@ class _SignUpPageState extends State<SignUpPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.black,
-          title: Text(
+          title: const Text(
             "Sign Up Successful",
             style: TextStyle(color: Colors.white),
           ),
-          content: Text("You have signed up successfully!",
+          content: const Text("You have signed up successfully!",
               style: TextStyle(color: Colors.white)),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("OK"),
+              child: const Text("OK"),
             ),
           ],
         );

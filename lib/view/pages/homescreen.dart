@@ -61,9 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(30)),
                     filled: true,
-                    fillColor: Color.fromARGB(255, 255, 255, 255),
+                    fillColor: const Color.fromARGB(255, 255, 255, 255),
                     hintText: 'Search ',
-                    prefixIcon: Icon(Icons.search)),
+                    prefixIcon: const Icon(Icons.search)),
               ),
             ),
           ),
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ChatScreen(user: userdetails),
                                     )),
                                 child: ListTile(
-                                  leading: CircleAvatar(
+                                  leading: const CircleAvatar(
                                     radius: 35,
                                     backgroundImage:
                                         AssetImage("assets/images/user.jpg"),
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  subtitle: Text(
+                                  subtitle: const Text(
                                     " Tap to Chat",
                                     style: TextStyle(color: Colors.black),
                                   ),

@@ -1,7 +1,6 @@
 import 'package:chathub/controller/basic_provider.dart';
 import 'package:chathub/services/auth_services.dart';
 import 'package:chathub/view/pages/homescreen.dart';
-import 'package:chathub/view/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
@@ -18,14 +17,14 @@ class CustomAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return AlertDialog(
-      backgroundColor: Color.fromARGB(255, 138, 138, 138),
+      backgroundColor: const Color.fromARGB(255, 138, 138, 138),
       actions: [
         // CustomTextField(
         //   controller: otpcontroller,
         //   hinttext: "OTP",
         //   fillcolor: const Color.fromRGBO(43, 40, 53, 1),
         // ),
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
         Pinput(
@@ -55,7 +54,7 @@ class CustomAlertDialog extends StatelessWidget {
             height: size.height * 0.07,
             width: size.width,
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 0, 0, 0),
+              color: const Color.fromARGB(255, 0, 0, 0),
               borderRadius: BorderRadius.circular(25),
             ),
             child: Center(

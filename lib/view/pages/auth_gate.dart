@@ -1,5 +1,4 @@
 import 'package:chathub/view/pages/homescreen.dart';
-import 'package:chathub/view/pages/initial_page.dart';
 import 'package:chathub/view/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +18,9 @@ class _AuthGateState extends State<AuthGate> {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return HomeScreen();
+              return const HomeScreen();
             } else {
-              return LoginPage();
+              return const LoginPage();
             }
           }),
     );

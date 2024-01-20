@@ -8,25 +8,22 @@ import 'package:google_sign_in/google_sign_in.dart';
 class FirebaseAuthServices {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Future<User?> signUpWithEmailAndPassword(
-    String name,
+  Future<UserCredential> signUpWithEmailAndPassword(
     String email,
-    String password,
+    String pass,
+    String name,
   ) async {
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential user = await auth.createUserWithEmailAndPassword(
+          email: email, password: pass);
       final UserModel userdata =
-          UserModel(email: email, name: name, uid: userCredential.user!.uid);
-      firestore
-          .collection('users')
-          .doc(userCredential.user!.uid)
-          .set(userdata.toJson());
-      return userCredential.user;
-    } catch (e) {
-      print('some error');
+          UserModel(email: email, name: name, uid: user.user!.uid);
+
+      firestore.collection('users').doc(user.user!.uid).set(userdata.toJson());
+      return user;
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
     }
-    return null;
   }
 
   // Future<User?> signInWithEmailAndPassword(
