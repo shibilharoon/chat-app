@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class AuthProviders extends ChangeNotifier {
   Future<UserCredential>? user;
-  FirebaseAuthServices service = FirebaseAuthServices();
+  FirebaseAuthServices  service = FirebaseAuthServices();
   signInWithEmail(String email, String password, BuildContext context) {
     return service.signInWithEmailAndPassword(email, password, context);
   }

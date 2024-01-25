@@ -54,18 +54,18 @@ class _LoginPageState extends State<LoginPage> {
                   Colors.black.withOpacity(1),
                 ])),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const InitialPage()));
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.white,
-                )),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 50),
+          //   child: IconButton(
+          //       onPressed: () {
+          //         Navigator.of(context).push(
+          //             MaterialPageRoute(builder: (context) => const InitialPage()));
+          //       },
+          //       icon: const Icon(
+          //         Icons.arrow_back_ios_new,
+          //         color: Colors.white,
+          //       )),
+          // ),
           Padding(
             padding: const EdgeInsets.only(top: 200, left: 20, right: 200),
             child: Text(

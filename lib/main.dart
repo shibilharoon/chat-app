@@ -1,5 +1,5 @@
 import 'package:chathub/controller/auth_provider.dart';
-import 'package:chathub/controller/basic_provider.dart';
+import 'package:chathub/controller/otp_provider.dart';
 import 'package:chathub/controller/firebase_provider.dart';
 import 'package:chathub/view/pages/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => BasicProvider()),
+        ChangeNotifierProvider(create: (context) => OtpProvider()),
         ChangeNotifierProvider(create: (context) => FirebaseProvider()),
         ChangeNotifierProvider(create: (context) => AuthProviders())
       ],

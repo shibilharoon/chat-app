@@ -1,6 +1,7 @@
 import 'package:chathub/controller/firebase_provider.dart';
 import 'package:chathub/services/auth_services.dart';
 import 'package:chathub/view/pages/chat_page.dart';
+import 'package:chathub/view/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,7 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        service.signOut();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const LoginPage()));
                       },
                       icon: const Icon(
                         Icons.logout,

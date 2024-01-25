@@ -31,16 +31,4 @@ class ChatService {
         .collection("messages")
         .add(newmessage.toJson());
   }
-
-  // addImageMessage(String recieverid, image) async {
-  //   Reference childfolder = firebaseStorage.child('images');
-  //   Reference? imageupload = childfolder.child("$recieverid.jpg");
-  //   try {
-  //     await imageupload.putFile(image);
-  //     downloadurl = await imageupload.getDownloadURL();
-  //     sendMessage(recieverid, downloadurl, "image");
-  //   } catch (e) {
-  //     throw Exception(e);
-  //   }
-  // }
 }

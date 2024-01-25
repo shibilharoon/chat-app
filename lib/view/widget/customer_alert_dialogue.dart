@@ -1,4 +1,4 @@
-import 'package:chathub/controller/basic_provider.dart';
+import 'package:chathub/controller/otp_provider.dart';
 import 'package:chathub/services/auth_services.dart';
 import 'package:chathub/view/pages/homescreen.dart';
 import 'package:flutter/material.dart';
@@ -39,14 +39,14 @@ class CustomAlertDialog extends StatelessWidget {
                     color: const Color.fromARGB(255, 255, 255, 255))),
           ),
           onChanged: (value) {
-            Provider.of<BasicProvider>(context, listen: false).otpSetter(value);
+            Provider.of<OtpProvider>(context, listen: false).otpSetter(value);
           },
         ),
         const SizedBox(height: 20),
         GestureDetector(
           onTap: () {
             String userotp =
-                Provider.of<BasicProvider>(context, listen: false).otpcode ??
+                Provider.of<OtpProvider>(context, listen: false).otpcode ??
                     "";
             verifyOtp(context, userotp);
           },

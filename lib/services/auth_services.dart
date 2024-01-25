@@ -26,20 +26,7 @@ class FirebaseAuthServices {
     }
   }
 
-  // Future<User?> signInWithEmailAndPassword(
-  //     String email, String password, context) async {
-  //   try {
-  //     UserCredential credential = await auth.signInWithEmailAndPassword(
-  //         email: email, password: password);
-  //     firestore.collection("users").doc(credential.user!.uid).set(
-  //         {"uid": credential.user!.uid, "email": email},
-  //         SetOptions(merge: true));
-  //     return credential.user;
-  //   } catch (e) {
-  //     print("error occured");
-  //   }
-  //   return null;
-  // }
+
 
   Future<User?> signInWithEmailAndPassword(
       String email, String password, context) async {
@@ -71,14 +58,14 @@ class FirebaseAuthServices {
       final GoogleSignInAuthentication gauth = await guser!.authentication;
       final credential = GoogleAuthProvider.credential(
           accessToken: gauth.accessToken, idToken: gauth.idToken);
-      UserCredential user = await auth.signInWithCredential(credential);
-      User? googleuser = user.user;
+      UserCredential credentialUser = await auth.signInWithCredential(credential);
+      User? googleuser = credentialUser.user;
       final UserModel userdata = UserModel(
           email: googleuser!.email,
           name: googleuser.displayName,
           uid: googleuser.uid);
       firestore.collection("users").doc(googleuser.uid).set(userdata.toJson());
-      return user;
+      return credentialUser;
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code);
     }
