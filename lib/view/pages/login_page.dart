@@ -54,18 +54,18 @@ class _LoginPageState extends State<LoginPage> {
                   Colors.black.withOpacity(1),
                 ])),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 50),
-          //   child: IconButton(
-          //       onPressed: () {
-          //         Navigator.of(context).push(
-          //             MaterialPageRoute(builder: (context) => const InitialPage()));
-          //       },
-          //       icon: const Icon(
-          //         Icons.arrow_back_ios_new,
-          //         color: Colors.white,
-          //       )),
-          // ),
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const InitialPage()));
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.white,
+                )),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 200, left: 20, right: 200),
             child: Text(
@@ -83,10 +83,11 @@ class _LoginPageState extends State<LoginPage> {
                     controller: emailController,
                     decoration: InputDecoration(
                         hintText: "E-mail",
-                        hintStyle:
-                            const TextStyle(color: Color.fromARGB(184, 0, 0, 0)),
+                        hintStyle: const TextStyle(
+                            color: Color.fromARGB(184, 0, 0, 0)),
                         prefixIcon: const Icon(Icons.email),
-                        prefixIconColor: const Color.fromARGB(175, 209, 206, 206),
+                        prefixIconColor:
+                            const Color.fromARGB(175, 209, 206, 206),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
@@ -105,10 +106,11 @@ class _LoginPageState extends State<LoginPage> {
                     controller: passwordController,
                     decoration: InputDecoration(
                         hintText: "Password",
-                        hintStyle:
-                            const TextStyle(color: Color.fromARGB(171, 0, 0, 0)),
+                        hintStyle: const TextStyle(
+                            color: Color.fromARGB(171, 0, 0, 0)),
                         prefixIcon: const Icon(Icons.star),
-                        prefixIconColor: const Color.fromARGB(172, 188, 185, 185),
+                        prefixIconColor:
+                            const Color.fromARGB(172, 188, 185, 185),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(

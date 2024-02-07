@@ -1,4 +1,3 @@
-
 import 'package:chathub/view/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,7 +38,7 @@ class InitialPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 550, left: 20),
                 child: Text(
-                  "It's easy to chat to your friends with chitchat",
+                  "It's easy to chat to your friends with Rayan",
                   style:
                       GoogleFonts.comfortaa(fontSize: 35, color: Colors.white),
                 ),
@@ -49,8 +48,8 @@ class InitialPage extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const LoginPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const LoginPage()));
                 },
                 child: Container(
                   height: 50,
