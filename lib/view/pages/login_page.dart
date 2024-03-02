@@ -126,7 +126,10 @@ class _LoginPageState extends State<LoginPage> {
                     height: 10,
                   ),
                   GestureDetector(
-                    onTap: signIn,
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((context) => HomeScreen())));
+                    },
                     child: Container(
                       height: 50,
                       width: 150,
